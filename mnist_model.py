@@ -7,6 +7,8 @@ import datetime as dt
 import gzip
 import cPickle as pickle 
 
+title = 'mnist_model'
+output_file = './results/{}.txt'.format(title)
 
 # helper functions
 from __helpers__ import report, load_mnist_data, generate_batches
@@ -57,8 +59,6 @@ def functions(network):
 
 if __name__ == '__main__':
     # record to file instead of printing statements
-    title = 'mnist_model'
-    output_file = '{}.txt'.format(title)
     report('\n\nStarted: {}.'.format(dt.datetime.now()), output_file)
     # obtain data
     X_train, y_train, X_val, y_val, X_test, y_test = load_mnist_data()
@@ -72,7 +72,7 @@ if __name__ == '__main__':
     report('Functions OK.', output_file)
     # start training
     TL, TA, VL, VA = [], [], [], []
-    epochs = 500
+    epochs = 0
     batch_size = 500
     t_batches = (len(X_train) + (len(X_train) % batch_size)) // batch_size
     v_batches = (len(X_val) + (len(X_val) % batch_size)) // batch_size
@@ -102,7 +102,7 @@ if __name__ == '__main__':
         report('{:<10}{:<20}{:<20}{:<20}{:<20}{:<20}'.format(*row),output_file)
     report('Finished training.', output_file)
     # save training information
-    f = gzip.open('{}_info.pkl.gz'.format(title), 'wb')
+    f = gzip.open('./results/{}_info.pkl.gz'.format(title), 'wb')
     info = {
         'training loss':TL,
         'training accuracy':TA,
@@ -121,7 +121,7 @@ if __name__ == '__main__':
     # save weights
     weights = nn.layers.get_all_params(network)
     weights = [np.array(w.get_value()) for w in weights]
-    f = gzip.open('{}_weights.pkl.gz'.format(title), 'wb')
+    f = gzip.open('./results/{}_weights.pkl.gz'.format(title), 'wb')
     pickle.dump(weights, f)
     f.close()
     report('Saved weights.', output_file)
