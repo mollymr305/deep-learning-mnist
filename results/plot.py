@@ -22,6 +22,7 @@ VA = data['validation accuracy']
 TE = [(1. - ta) * 100 for ta in TA]
 VE = [(1. - va) * 100 for va in VA]
 
+# plot training and validation errors
 plt.plot(VE, c='r', lw=1.5)
 plt.plot(TE, c='g', lw=1.5)
 plt.legend(['validation', 'training'], fontsize=20)
