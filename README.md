@@ -4,7 +4,7 @@
 
 MNIST Digit classification using Python (Lasagne + Theano library). 
 
-Training takes about 20 minutes with GPU; thanks [National Supercomputing Centre (NSCC) Singapore](http://www.nscc.sg)! All the output, training information and weights are saved/pickled in the 'results' folder.
+Training takes about 20 minutes with GPU; thanks [National Supercomputing Centre (NSCC) Singapore](http://www.nscc.sg)! All the output, training information and weights are saved/pickled in the 'results' folder. Main implementation is in mnist_model.py.
 
 Run/theano settings: ```THEANO_FLAGS='mode=FAST_RUN, device=gpu, floatX=float32' python mnist_model.py```
 
