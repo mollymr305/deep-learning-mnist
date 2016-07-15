@@ -8,7 +8,7 @@ import gzip
 import cPickle as pickle 
 
 title = 'mnist_model'
-output_file = './results/{}.txt'.format(title)
+output_file = './output/{}.txt'.format(title)
 
 # helper functions
 from __helpers__ import report, load_mnist_data, generate_batches
@@ -102,7 +102,7 @@ if __name__ == '__main__':
         report('{:<10}{:<20}{:<20}{:<20}{:<20}{:<20}'.format(*row),output_file)
     report('Finished training.', output_file)
     # save training information
-    f = gzip.open('./results/{}_info.pkl.gz'.format(title), 'wb')
+    f = gzip.open('./output/{}_info.pkl.gz'.format(title), 'wb')
     info = {
         'training loss':TL,
         'training accuracy':TA,
@@ -121,7 +121,7 @@ if __name__ == '__main__':
     # save weights
     weights = nn.layers.get_all_params(network)
     weights = [np.array(w.get_value()) for w in weights]
-    f = gzip.open('./results/{}_weights.pkl.gz'.format(title), 'wb')
+    f = gzip.open('./output/{}_weights.pkl.gz'.format(title), 'wb')
     pickle.dump(weights, f)
     f.close()
     report('Saved weights.', output_file)
