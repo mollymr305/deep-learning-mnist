@@ -72,7 +72,7 @@ if __name__ == '__main__':
     report('Functions OK.', output_file)
     # start training
     TL, TA, VL, VA = [], [], [], []
-    epochs = 0
+    epochs = 500
     batch_size = 500
     t_batches = (len(X_train) + (len(X_train) % batch_size)) // batch_size
     v_batches = (len(X_val) + (len(X_val) % batch_size)) // batch_size
